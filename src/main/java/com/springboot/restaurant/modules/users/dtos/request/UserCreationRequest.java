@@ -1,8 +1,6 @@
 package com.springboot.restaurant.modules.users.dtos.request;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
 
 public class UserCreationRequest {
 
