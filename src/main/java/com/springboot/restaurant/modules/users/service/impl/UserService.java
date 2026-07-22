@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.UserCreationResponse;
+import com.springboot.restaurant.modules.users.dto.response.UserCreateResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserDeleteResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserUpdateResponse;
@@ -45,7 +45,7 @@ public class UserService implements UserServiceInterface {
 
     @Override
     @Transactional
-    public UserCreationResponse createUser(UserCreateRequest request) {
+    public UserCreateResponse createUser(UserCreateRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new AppException(ErrorCode.EMAIL_EXISTED);
@@ -64,7 +64,7 @@ public class UserService implements UserServiceInterface {
         userRepository.save(account);
 
         // tạo lại dto, rồi dùng dto đó lưa lại enity để hiển thị response
-        UserCreationResponse user = UserMapper.toUserCreationResponse(account);
+        UserCreateResponse user = UserMapper.toUserCreationResponse(account);
 
         return user;
 

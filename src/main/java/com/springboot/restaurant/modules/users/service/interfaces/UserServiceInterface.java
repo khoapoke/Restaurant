@@ -2,7 +2,7 @@ package com.springboot.restaurant.modules.users.service.interfaces;
 
 import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.UserCreationResponse;
+import com.springboot.restaurant.modules.users.dto.response.UserCreateResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserDeleteResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserUpdateResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserResponse;
@@ -16,7 +16,7 @@ public interface UserServiceInterface {
 
     List<UserResponse> getList();
 
-    UserCreationResponse createUser(@RequestBody UserCreateRequest request);
+    UserCreateResponse createUser(@RequestBody UserCreateRequest request);
     
     UserResponse getUser(Long id);
     

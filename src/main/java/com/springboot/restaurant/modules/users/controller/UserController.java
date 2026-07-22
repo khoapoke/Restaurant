@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
 import com.springboot.restaurant.modules.users.dto.response.UserUpdateResponse;
-import com.springboot.restaurant.modules.users.dto.response.UserCreationResponse;
+import com.springboot.restaurant.modules.users.dto.response.UserCreateResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserDeleteResponse;
 import com.springboot.restaurant.modules.users.service.interfaces.UserServiceInterface;
@@ -52,9 +52,9 @@ public class UserController {
 
     @PostMapping()
     // thêm anotaion @valid để biết có xài validation trong controller
-    public ResponseEntity<ApiResponse<UserCreationResponse>> postUser(@RequestBody @Valid UserCreateRequest entity) {
+    public ResponseEntity<ApiResponse<UserCreateResponse>> postUser(@RequestBody @Valid UserCreateRequest entity) {
 
-        UserCreationResponse newuser = userService.createUser(entity);
+        UserCreateResponse newuser = userService.createUser(entity);
         
     
         return ResponseEntity.ok(ApiResponse.success(2001,"created account success", newuser));

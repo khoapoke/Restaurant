@@ -1,6 +1,6 @@
 package com.springboot.restaurant.modules.users.dto.response;
 
-public class UserCreationResponse {
+public class UserCreateResponse {
 
     private String tenDangNhap;
     private String email;
@@ -8,11 +8,11 @@ public class UserCreationResponse {
     private String matKhau;
     
 
-    public UserCreationResponse() {
+    public UserCreateResponse() {
     }
 
 
-    public UserCreationResponse(String tenDangNhap, String matKhau,String email) {
+    public UserCreateResponse(String tenDangNhap, String matKhau,String email) {
         
         
         this.tenDangNhap = tenDangNhap;
