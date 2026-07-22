@@ -1,6 +1,6 @@
 package com.springboot.restaurant.modules.users.mapper;
 
-import com.springboot.restaurant.modules.users.dto.request.UserCreationRequest;
+import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
 import com.springboot.restaurant.modules.users.dto.response.UserCreationResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserDeleteResponse;
@@ -9,7 +9,7 @@ import com.springboot.restaurant.modules.users.dto.response.UserUpdateResponse;
 import com.springboot.restaurant.modules.users.entity.Account;
 
 public class UserMapper {
-    public static UserResponse toUsersResponse(Account account) {
+    public static UserResponse toUserResponse(Account account) {
         
         UserResponse dto = new UserResponse();
         
@@ -24,7 +24,7 @@ public class UserMapper {
         
     }
 
-    public static Account toEntity(UserCreationRequest request) {
+    public static Account toEntity(UserCreateRequest request) {
 
         Account account = new Account();
 
