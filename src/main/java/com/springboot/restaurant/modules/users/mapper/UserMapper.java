@@ -10,10 +10,10 @@ import com.springboot.restaurant.modules.users.entity.Account;
 
 public class UserMapper {
     public static UserResponse toUsersResponse(Account account) {
-
+        
         UserResponse dto = new UserResponse();
         
-        // nếu không set các trường thì trường đó sẽ hiện null khi truyền qua API
+        // note: if don't set variable there is will be null 
         dto.setMaTaiKhoan(account.getMaTaiKhoan());
         dto.setHoTen(account.getHoTen());
         dto.setDiaChi(account.getDiaChi());
@@ -21,6 +21,7 @@ public class UserMapper {
         dto.setNgaySinh(account.getNgaySinh());
 
         return dto;
+        
     }
 
     public static Account toEntity(UserCreationRequest request) {
@@ -35,49 +36,50 @@ public class UserMapper {
 
     }
     
-    public static void toEntity(UserUpdateRequest request, Account existsAccount) {
+    public static void toEntity(UserUpdateRequest request, Account existingAccount) {
         
-        existsAccount.setTenDangNhap(request.getTenDangNhap());
-        existsAccount.setMatKhau(request.getMatKhau());
-        existsAccount.setHoTen(request.getHoTen());
-        existsAccount.setDiaChi(request.getDiaChi());
-        existsAccount.setEmail(request.getEmail());
-        
+        existingAccount.setTenDangNhap(request.getTenDangNhap());
+        existingAccount.setMatKhau(request.getMatKhau());
+        existingAccount.setHoTen(request.getHoTen());
+        existingAccount.setDiaChi(request.getDiaChi());
+        existingAccount.setEmail(request.getEmail());
         
     }
-    
-    
 
     public static UserCreationResponse toUserCreationResponse(Account account) {
+       
         UserCreationResponse dto = new UserCreationResponse();
 
         dto.setMatKhau(account.getMatKhau());
         dto.setTenDangNhap(account.getTenDangNhap());
         dto.setEmail(account.getEmail());
+        
         return dto;
 
     }
     
-    public static UserUpdateResponse toUserUpdateResponse(Account existsaccount) {
+    public static UserUpdateResponse toUserUpdateResponse(Account existingAccount) {
 
         UserUpdateResponse user = new UserUpdateResponse();
-        user.setTenDangNhap(existsaccount.getTenDangNhap());
-        user.setMatKhau(existsaccount.getMatKhau());
-        user.setHoTen(existsaccount.getHoTen());
-        user.setDiaChi(existsaccount.getDiaChi());
-        user.setEmail(existsaccount.getEmail());
+        
+        user.setTenDangNhap(existingAccount.getTenDangNhap());
+        user.setMatKhau(existingAccount.getMatKhau());
+        user.setHoTen(existingAccount.getHoTen());
+        user.setDiaChi(existingAccount.getDiaChi());
+        user.setEmail(existingAccount.getEmail());
+        
         return user;
 
     }
     
-    
-    public static UserDeleteResponse toUserDeleteResponse(Account existsAccount) {
+    public static UserDeleteResponse toUserDeleteResponse(Account existingAccount) {
         
         UserDeleteResponse user = new UserDeleteResponse();
-        user.setMaTaiKhoan(existsAccount.getMaTaiKhoan());
-        user.setTenDangNhap(existsAccount.getTenDangNhap());
-        user.setEmail(existsAccount.getEmail());
-        user.setHoTen(existsAccount.getHoTen());
+        
+        user.setMaTaiKhoan(existingAccount.getMaTaiKhoan());
+        user.setTenDangNhap(existingAccount.getTenDangNhap());
+        user.setEmail(existingAccount.getEmail());
+        user.setHoTen(existingAccount.getHoTen());
         
         return user;
         

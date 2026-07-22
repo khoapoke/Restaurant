@@ -1,30 +1,36 @@
 package com.springboot.restaurant.shared;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.springboot.restaurant.exception.FieldErrorDetail;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 
 
 // thêm chú thích để hiển thị các trường bị null
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 
     private boolean success;
-    private int status;
+    private int code; 
     private String message;
-    private T data;
-    private Object errors;
+    private T result;
+    private List<FieldErrorDetail> errors;
     private LocalDateTime timestamp;
 
     public ApiResponse() {
+        success = true;
+        code = 200;
+        timestamp = LocalDateTime.now();
 
     }
 
-    public ApiResponse(boolean success, int status, String message, T data, Object errors, LocalDateTime timestamp) {
+    public ApiResponse(boolean success, int code, String message, T result, List<FieldErrorDetail> errors, LocalDateTime timestamp) {
         this.success = success;
-        this.status = status;
+        this.code = code;
         this.message = message;
-        this.data = data;
+        this.result = result;
         this.errors = errors;
         this.timestamp = timestamp;
     }
@@ -37,12 +43,12 @@ public class ApiResponse<T> {
         this.success = success;
     }
 
-    public int getStatus() {
-        return status;
+    public int getCode() {
+        return code;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getMessage() {
@@ -53,19 +59,19 @@ public class ApiResponse<T> {
         this.message = message;
     }
 
-    public T getData() {
-        return data;
+    public T getResult() {
+        return result;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public void setResult(T result) {
+        this.result = result;
     }
 
-    public Object getErrors() {
+    public List<FieldErrorDetail> getErrors() {
         return errors;
     }
 
-    public void setErrors(Object errors) {
+    public void setErrors(List<FieldErrorDetail> errors) {
         this.errors = errors;
     }
 
@@ -77,46 +83,22 @@ public class ApiResponse<T> {
         this.timestamp = timestamp;
     }
 
-    // static method
+    // static method instead of set thu cong thi chi can goi method success
 
-    public static <T> ApiResponse<T> success(String message, T data) {
-        return new ApiResponse<>(
-                true,
-                200,
-                message,
-                data,
-                null,
-                LocalDateTime.now()
-
-        );
+    public static <T> ApiResponse<T> success(int code,String message, T result) {
+        
+        ApiResponse<T> apiResponse = new ApiResponse<>();
+        
+        
+        apiResponse.setMessage(message);
+        apiResponse.setSuccess(true);
+        apiResponse.setCode(code);
+        apiResponse.setResult(result);
+        
+        return apiResponse;
 
     }
 
-    public static <T> ApiResponse<T> created(String message, T data) {
-        return new ApiResponse<>(
-                true,
-                201,
-                message,
-                data,
-                null,
-                LocalDateTime.now()
 
-        );
-    }
-
-    public static <T> ApiResponse<T> error(int status, String message, Object errors) {
-        return new ApiResponse<>(
-                false,
-                status,
-                message,
-                null,
-                errors,
-                LocalDateTime.now()
-
-        );
-    }
-    
-    
-    
 
 }

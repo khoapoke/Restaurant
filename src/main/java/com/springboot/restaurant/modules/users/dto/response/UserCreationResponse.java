@@ -4,7 +4,6 @@ public class UserCreationResponse {
 
     private String tenDangNhap;
     private String email;
- 
 
     private String matKhau;
     
@@ -13,9 +12,12 @@ public class UserCreationResponse {
     }
 
 
-    public UserCreationResponse(String tenDangNhap, String matKhau) {
+    public UserCreationResponse(String tenDangNhap, String matKhau,String email) {
+        
+        
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
+        this.email = email;
     }
 
 

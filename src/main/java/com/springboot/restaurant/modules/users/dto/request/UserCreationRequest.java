@@ -1,12 +1,14 @@
 package com.springboot.restaurant.modules.users.dto.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
 public class UserCreationRequest {
 
     
-
+    @Size(min = 3, message="username must be at least 3 characters")
     private String tenDangNhap;
+    @Email(message = "email not formatted")
     private String email;
     @Size(min = 4, message="Passwors must be at least 4 characters")
     private String matKhau;
