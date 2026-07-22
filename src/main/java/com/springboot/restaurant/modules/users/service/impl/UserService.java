@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import com.springboot.restaurant.modules.users.dto.request.UserCreationRequest;
+import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
 import com.springboot.restaurant.modules.users.dto.response.UserCreationResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserDeleteResponse;
@@ -40,12 +40,12 @@ public class UserService implements UserServiceInterface {
         
         return userRepository.findAll()
         .stream()
-        .map(UserMapper::toUsersResponse).toList();
+        .map(UserMapper::toUserResponse).toList();
     }
 
     @Override
     @Transactional
-    public UserCreationResponse createUser(UserCreationRequest request) {
+    public UserCreationResponse createUser(UserCreateRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new AppException(ErrorCode.EMAIL_EXISTED);
@@ -74,7 +74,7 @@ public class UserService implements UserServiceInterface {
     public UserResponse getUser(Long id) {
         
         Account account = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
-        UserResponse user = UserMapper.toUsersResponse(account);
+        UserResponse user = UserMapper.toUserResponse(account);
         return user;
 
     }
