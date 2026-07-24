@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "DANH_MUC")
-public class Catagories {
+public class Catagory {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,10 @@ public class Catagories {
     @Column(name = "mo_ta", columnDefinition = "NVARCHAR(MAX)")
     private String moTa;
 
-    public Catagories() {
+    public Catagory() {
     }
 
-    public Catagories(Long maDanhMuc, String tenDanhMuc, String moTa) {
+    public Catagory(Long maDanhMuc, String tenDanhMuc, String moTa) {
         this.maDanhMuc = maDanhMuc;
         this.tenDanhMuc = tenDanhMuc;
         this.moTa = moTa;

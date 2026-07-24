@@ -30,12 +30,12 @@ public class Food {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ma_danh_muc")
-    private Catagories maDanhMuc;
+    private Catagory maDanhMuc;
 
     public Food() {
     }
 
-    public Food(Long maMonAn, String tenMonAn, double giaTien, String moTa, String hinhAnh, Catagories maDanhMuc) {
+    public Food(Long maMonAn, String tenMonAn, double giaTien, String moTa, String hinhAnh, Catagory maDanhMuc) {
         this.maMonAn = maMonAn;
         this.tenMonAn = tenMonAn;
         this.giaTien = giaTien;
@@ -84,11 +84,11 @@ public class Food {
         this.hinhAnh = hinhAnh;
     }
 
-    public Catagories getMaDanhMuc() {
+    public Catagory getMaDanhMuc() {
         return maDanhMuc;
     }
 
-    public void setMaDanhMuc(Catagories maDanhMuc) {
+    public void setMaDanhMuc(Catagory maDanhMuc) {
         this.maDanhMuc = maDanhMuc;
     } 
     
