@@ -41,7 +41,7 @@ public class Account {
 
     @ManyToOne(fetch = FetchType.LAZY) // nhiều tài khoản thuộc về 1 vai trò
     @JoinColumn(name = "ma_vai_tro")
-    private Role maVaiTro;
+    private Role vaiTro;
 
     public Account() {
 
@@ -55,7 +55,7 @@ public class Account {
         this.ngaySinh = object.ngaySinh;
         this.diaChi = object.diaChi;
         this.email = object.email;
-        this.maVaiTro = object.maVaiTro;
+        this.vaiTro = object.vaiTro;
     }
 
     public Long getMaTaiKhoan() {
@@ -114,12 +114,12 @@ public class Account {
         this.email = email;
     }
 
-    public Role getMaVaiTro() {
-        return maVaiTro;
+    public Role getVaiTro() {
+        return vaiTro;
     }
 
-    public void setMaVaiTro(Role maVaiTro) {
-        this.maVaiTro = maVaiTro;
+    public void setVaiTro(Role vaiTro) {
+        this.vaiTro = vaiTro;
     }
 
 }

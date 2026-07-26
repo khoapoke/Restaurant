@@ -19,7 +19,7 @@ public class UserMapper {
         dto.setDiaChi(account.getDiaChi());
         dto.setEmail(account.getEmail());
         dto.setNgaySinh(account.getNgaySinh());
-
+        dto.setVaiTro(account.getVaiTro());
         return dto;
         
     }
