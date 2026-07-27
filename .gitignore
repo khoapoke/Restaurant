@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### database ###
+src/main/resources/application.properties
+src/main/java/com/springboot/restaurant/services/DBContext.java
