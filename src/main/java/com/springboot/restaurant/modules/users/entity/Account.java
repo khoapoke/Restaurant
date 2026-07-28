@@ -1,17 +1,26 @@
+
 package com.springboot.restaurant.modules.users.entity;
+
 
 import java.time.LocalDate;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
+
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.FetchType;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "TAI_KHOAN")
 public class Account {
@@ -43,6 +52,12 @@ public class Account {
     @JoinColumn(name = "ma_vai_tro")
     private Role vaiTro;
 
+    // @OneToMany(mappedBy = "taiKhoan",cascade = CascadeType.ALL)
+    // private List<Order> danhSachDonHang;
+    
+    // @OneToMany(mappedBy = "taiKhoan",cascade = CascadeType.ALL)
+    // private List<TableReservation> danhSachDatBan;
+    
     public Account() {
 
     }
@@ -58,68 +73,5 @@ public class Account {
         this.vaiTro = object.vaiTro;
     }
 
-    public Long getMaTaiKhoan() {
-        return maTaiKhoan;
-    }
-
-    public void setMaTaiKhoan(Long maTaiKhoan) {
-        this.maTaiKhoan = maTaiKhoan;
-    }
-
-    public String getTenDangNhap() {
-        return tenDangNhap;
-    }
-
-    public void setTenDangNhap(String tenDangNhap) {
-        this.tenDangNhap = tenDangNhap;
-    }
-
-    public String getMatKhau() {
-        return matKhau;
-    }
-
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
-    }
-
-    public String getHoTen() {
-        return hoTen;
-    }
-
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
-    }
-
-    public LocalDate getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh(LocalDate ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
-
-    public String getDiaChi() {
-        return diaChi;
-    }
-
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Role getVaiTro() {
-        return vaiTro;
-    }
-
-    public void setVaiTro(Role vaiTro) {
-        this.vaiTro = vaiTro;
-    }
 
 }
