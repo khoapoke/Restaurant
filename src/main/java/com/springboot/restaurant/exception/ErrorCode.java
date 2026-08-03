@@ -4,11 +4,13 @@ public enum ErrorCode {
     
     
     
-    USER_NOT_FOUND(1050, "User not found in system"),
-    EMAIL_EXISTED(1022, "Email already exists"),
-    INVALID_KEY(9999, "Uncategorized error"),
-    TENDANGNHAP_EXISTED(1022,"User name already exists");
+    USER_NOT_FOUND(404, "User not found in system"),
+    EMAIL_EXISTED(409, "Email already exists"),
+    INVALID_KEY(409, "Uncategorized error"),
+    TENDANGNHAP_EXISTED(409, "User name already exists"),
     
+    ROLE_EXISTED(409, "role already existed"),
+    ROLE_NOT_FOUND(404, "role has not been create");
     
     
     
