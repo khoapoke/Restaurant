@@ -1,4 +1,4 @@
-package com.springboot.restaurant.modules.auth.controllers;
+package com.springboot.restaurant.modules.auth.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

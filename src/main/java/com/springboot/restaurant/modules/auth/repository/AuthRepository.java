@@ -1,4 +1,4 @@
-package com.springboot.restaurant.modules.auth.repositories;
+package com.springboot.restaurant.modules.auth.repository;
 
 
 

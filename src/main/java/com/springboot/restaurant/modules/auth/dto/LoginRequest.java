@@ -1,4 +1,4 @@
-package com.springboot.restaurant.modules.auth.dtos;
+package com.springboot.restaurant.modules.auth.dto;
 
 public class LoginRequest {
     
