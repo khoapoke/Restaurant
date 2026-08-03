@@ -36,7 +36,7 @@ public class Account {
     @Column(name = "mat_khau", nullable = false, length = 255)
     private String matKhau;
 
-    @Column(name = "ho_ten", nullable = false, length = 100)
+    @Column(name = "ho_ten", length = 100)
     private String hoTen;
 
     @Column(name = "ngay_sinh")
