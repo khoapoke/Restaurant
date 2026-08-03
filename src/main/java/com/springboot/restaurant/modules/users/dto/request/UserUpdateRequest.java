@@ -1,70 +1,28 @@
 package com.springboot.restaurant.modules.users.dto.request;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserUpdateRequest {
     
     // attributes can update
+    @Size(min = 3, message="username must be at least 3 characters")
     private String tenDangNhap;
-
-    private String matKhau;
 
     private String hoTen;
 
     private String diaChi;
-  
+    @Email(message = "email not formatted")
     private String email;
 
-    public UserUpdateRequest() {
-    }
-
-    public UserUpdateRequest(String tenDangNhap, String matKhau, String hoTen, String diaChi, String email) {
-        this.tenDangNhap = tenDangNhap;
-        this.matKhau = matKhau;
-        this.hoTen = hoTen;
-        this.diaChi = diaChi;
-        this.email = email;
-    }
-
-    public String getTenDangNhap() {
-        return tenDangNhap;
-    }
-
-    public void setTenDangNhap(String tenDangNhap) {
-        this.tenDangNhap = tenDangNhap;
-    }
-
-    public String getMatKhau() {
-        return matKhau;
-    }
-
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
-    }
-
-    public String getHoTen() {
-        return hoTen;
-    }
-
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
-    }
-
-    public String getDiaChi() {
-        return diaChi;
-    }
-
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
     
     
 }
