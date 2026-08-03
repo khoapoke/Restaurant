@@ -11,10 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.UserCreateResponse;
-import com.springboot.restaurant.modules.users.dto.response.UserDeleteResponse;
+import com.springboot.restaurant.modules.users.dto.response.UserDetailResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserResponse;
-import com.springboot.restaurant.modules.users.dto.response.UserUpdateResponse;
 import com.springboot.restaurant.modules.users.entity.Account;
 import com.springboot.restaurant.modules.users.mapper.UserMapper;
 import com.springboot.restaurant.modules.users.repository.UserRepository;
@@ -28,10 +26,12 @@ public class UserService implements UserServiceInterface {
     // @Transaction to rollback when it errol at database
     
     private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-
+    private final UserMapper userMapper;
+    
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
+       
         this.userRepository = userRepository;
+         this.userMapper = userMapper;
        
     }
 
@@ -40,12 +40,12 @@ public class UserService implements UserServiceInterface {
         
         return userRepository.findAll()
         .stream()
-        .map(UserMapper::toUserResponse).toList();
+        .map(userMapper::toUserResponse).toList();
     }
 
     @Override
     @Transactional
-    public UserCreateResponse createUser(UserCreateRequest request) {
+    public UserResponse createUser(UserCreateRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new AppException(ErrorCode.EMAIL_EXISTED);
@@ -58,34 +58,34 @@ public class UserService implements UserServiceInterface {
         
         
         
-        // tạo acc entity để lưu xuống database
-        Account account = UserMapper.toEntity(request);
+        // create account to save to database
+        Account account = userMapper.toEntity(request);
 
         userRepository.save(account);
 
-        // tạo lại dto, rồi dùng dto đó lưa lại enity để hiển thị response
-        UserCreateResponse user = UserMapper.toUserCreationResponse(account);
+        // create dto to save create request
+        UserResponse user = userMapper.toUserCreationResponse(account);
 
         return user;
 
     }
     
     @Override
-    public UserResponse getUser(Long id) {
+    public UserDetailResponse getUser(Long id) {
         
         Account account = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
-        UserResponse user = UserMapper.toUserResponse(account);
+        UserDetailResponse user = userMapper.toUserDetailResponse(account);
         return user;
 
     }
     
     @Override
     @Transactional
-    public UserDeleteResponse deleteUser(Long id) {
+    public UserResponse deleteUser(Long id) {
 
         Account account = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         userRepository.delete(account);
-        UserDeleteResponse user = UserMapper.toUserDeleteResponse(account);
+        UserResponse user = userMapper.toUserDeleteResponse(account);
         
         return user;
         
@@ -93,28 +93,27 @@ public class UserService implements UserServiceInterface {
 
     @Override
     @Transactional
-    public UserUpdateResponse updateUser(Long id, UserUpdateRequest request) {
+    public UserResponse updateUser(Long id, UserUpdateRequest request) {
         
         Account account=userRepository.findById(id).orElseThrow(()-> new AppException(ErrorCode.USER_NOT_FOUND));
        
-        if (userRepository.existsByEmail(request.getEmail())) {
+        if (userRepository.existsByEmailAndMaTaiKhoanNot(request.getEmail(),id)) {
 
             throw new AppException(ErrorCode.EMAIL_EXISTED);
         }
-        if (userRepository.existsByTenDangNhap(request.getTenDangNhap())) {
+        if (userRepository.existsByTenDangNhapAndMaTaiKhoanNot(request.getTenDangNhap(),id)) {
             throw new AppException(ErrorCode.TENDANGNHAP_EXISTED);
         }
         
         
         //map user to enity account
-        
-        UserMapper.toEntity(request, account);
+        userMapper.updateEntityFromRequest(request, account);
         
         // update and save enity
         userRepository.save(account);
         
         // map enity to response
-        UserUpdateResponse user =UserMapper.toUserUpdateResponse(account);
+        UserResponse user =userMapper.toUserUpdateResponse(account);
         
         return user;
         
