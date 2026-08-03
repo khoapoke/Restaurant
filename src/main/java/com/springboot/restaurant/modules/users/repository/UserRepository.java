@@ -15,6 +15,10 @@ public interface UserRepository extends JpaRepository<Account, Long> {
 
     boolean existsByTenDangNhap(String tenDangNhap);
     
+    // check unique email except id account
+    boolean existsByEmailAndMaTaiKhoanNot(String email, Long maTaiKhoan);
+    
+    boolean existsByTenDangNhapAndMaTaiKhoanNot(String tenDangNhap, Long maTaiKhoan);
     
     
 }
