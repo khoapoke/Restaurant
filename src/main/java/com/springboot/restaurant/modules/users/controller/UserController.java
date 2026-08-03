@@ -2,19 +2,20 @@ package com.springboot.restaurant.modules.users.controller;
 
 import java.util.List;
 
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.UserUpdateResponse;
-import com.springboot.restaurant.modules.users.dto.response.UserCreateResponse;
+import com.springboot.restaurant.modules.users.dto.response.UserDetailResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserResponse;
-import com.springboot.restaurant.modules.users.dto.response.UserDeleteResponse;
 import com.springboot.restaurant.modules.users.service.interfaces.UserServiceInterface;
 import com.springboot.restaurant.shared.ApiResponse;
 
@@ -40,51 +41,56 @@ public class UserController {
 
   
 
-    @GetMapping()
+    @GetMapping
+    // method 1: use status in response and body
     public ResponseEntity<ApiResponse<List<UserResponse>>> getUsers() {
 
         List<UserResponse> listUser = userService.getList();
        
-        return ResponseEntity.ok(ApiResponse.success(2002,"get list user success", listUser));
+        return ResponseEntity.status(200).body(ApiResponse.success(200, "Get list user success", listUser));
         
 
     }
 
-    @PostMapping()
+    @PostMapping
+    // method 2: use anotation status code 
+    @ResponseStatus(HttpStatus.CREATED)
     // thêm anotaion @valid để biết có xài validation trong controller
-    public ResponseEntity<ApiResponse<UserCreateResponse>> postUser(@RequestBody @Valid UserCreateRequest entity) {
+    public ApiResponse<UserResponse> postUser(@RequestBody @Valid UserCreateRequest entity) {
 
-        UserCreateResponse newuser = userService.createUser(entity);
+        UserResponse newuser = userService.createUser(entity);
         
-    
-        return ResponseEntity.ok(ApiResponse.success(2001,"created account success", newuser));
+        return ApiResponse.success(201,"created account success", newuser);
     }
     
     @GetMapping("/{userId}")
-    public ResponseEntity<ApiResponse<UserResponse>> getUser(@PathVariable("userId") Long id) {
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResponse<UserDetailResponse>getUser(@PathVariable("userId") Long id) {
 
-        UserResponse user = userService.getUser(id);
+        UserDetailResponse user = userService.getUser(id);
 
-        return ResponseEntity.ok(ApiResponse.success(2000, "find user success", user));
+        return ApiResponse.success(200, "find user success", user);
 
     }
   
     @PutMapping("/{userId}")
-    public ResponseEntity<ApiResponse<UserUpdateResponse>> putUser(@PathVariable("userId") Long id,
+    @ResponseStatus(HttpStatus.CREATED)
+    public ApiResponse<UserResponse> putUser(@PathVariable("userId") Long id,
         @RequestBody UserUpdateRequest request) {
-        UserUpdateResponse user = userService.updateUser(id, request);
+        UserResponse user = userService.updateUser(id, request);
         
-        return ResponseEntity.ok(ApiResponse.success(3000, "update user success", user));
+        return ApiResponse.success(201, "update user success", user);
         
         
     }
     
     @DeleteMapping("/{userId}")
-    public ResponseEntity<ApiResponse<UserDeleteResponse>> deleteUser(@PathVariable("userId") Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ApiResponse<UserResponse> deleteUser(@PathVariable("userId") Long id) {
         
-        UserDeleteResponse user = userService.deleteUser(id);
+        UserResponse user = userService.deleteUser(id);
         
-        return ResponseEntity.ok(ApiResponse.success(2000, "delete user success", user));
+        return ApiResponse.success(2000, "delete user success", user);
         
         
     }
