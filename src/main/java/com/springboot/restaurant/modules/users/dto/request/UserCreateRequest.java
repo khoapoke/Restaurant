@@ -23,6 +23,7 @@ public class UserCreateRequest {
     private String email;
     @Size(min = 4, message="Passwors must be at least 4 characters")
     private String matKhau;
-
+    
+    private Long maVaiTro;
 
 }
