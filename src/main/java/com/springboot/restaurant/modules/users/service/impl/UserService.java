@@ -8,39 +8,42 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
 import com.springboot.restaurant.modules.users.dto.response.UserDetailResponse;
 import com.springboot.restaurant.modules.users.dto.response.UserResponse;
 import com.springboot.restaurant.modules.users.entity.Account;
+import com.springboot.restaurant.modules.users.entity.Role;
 import com.springboot.restaurant.modules.users.mapper.UserMapper;
+import com.springboot.restaurant.modules.users.repository.RoleRepository;
 import com.springboot.restaurant.modules.users.repository.UserRepository;
 import com.springboot.restaurant.modules.users.service.interfaces.UserServiceInterface;
-
-
 
 @Service
 public class UserService implements UserServiceInterface {
 
     // @Transaction to rollback when it errol at database
-    
+
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final UserMapper userMapper;
-    
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
-       
+
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, UserMapper userMapper) {
+
         this.userRepository = userRepository;
-         this.userMapper = userMapper;
-       
+        this.roleRepository = roleRepository;
+        this.userMapper = userMapper;
+
     }
 
     @Override
     public List<UserResponse> getList() {
-        
-        return userRepository.findAll()
-        .stream()
-        .map(userMapper::toUserResponse).toList();
+
+        List<UserResponse> users = userRepository.findAll()
+                .stream()
+                .map(userMapper::toUserResponse).toList();
+
+        return users;
     }
 
     @Override
@@ -51,34 +54,38 @@ public class UserService implements UserServiceInterface {
             throw new AppException(ErrorCode.EMAIL_EXISTED);
 
         }
-        
-          if (userRepository.existsByTenDangNhap(request.getTenDangNhap())) {
+
+        if (userRepository.existsByTenDangNhap(request.getTenDangNhap())) {
             throw new AppException(ErrorCode.TENDANGNHAP_EXISTED);
         }
-        
-        
-        
+
         // create account to save to database
         Account account = userMapper.toEntity(request);
 
-        userRepository.save(account);
+        Role role = roleRepository.findById(request.getMaVaiTro())
+                .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
+
+        account.setVaiTro(role);
+
+        Account saveAccount = userRepository.save(account);
 
         // create dto to save create request
-        UserResponse user = userMapper.toUserCreationResponse(account);
+        UserResponse user = userMapper.toUserCreationResponse(saveAccount);
 
         return user;
 
     }
-    
+
     @Override
     public UserDetailResponse getUser(Long id) {
-        
+
         Account account = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         UserDetailResponse user = userMapper.toUserDetailResponse(account);
+
         return user;
 
     }
-    
+
     @Override
     @Transactional
     public UserResponse deleteUser(Long id) {
@@ -86,37 +93,35 @@ public class UserService implements UserServiceInterface {
         Account account = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         userRepository.delete(account);
         UserResponse user = userMapper.toUserDeleteResponse(account);
-        
+
         return user;
-        
+
     }
 
     @Override
     @Transactional
     public UserResponse updateUser(Long id, UserUpdateRequest request) {
-        
-        Account account=userRepository.findById(id).orElseThrow(()-> new AppException(ErrorCode.USER_NOT_FOUND));
-       
-        if (userRepository.existsByEmailAndMaTaiKhoanNot(request.getEmail(),id)) {
+
+        Account account = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
+
+        if (userRepository.existsByEmailAndMaTaiKhoanNot(request.getEmail(), id)) {
 
             throw new AppException(ErrorCode.EMAIL_EXISTED);
         }
-        if (userRepository.existsByTenDangNhapAndMaTaiKhoanNot(request.getTenDangNhap(),id)) {
+        if (userRepository.existsByTenDangNhapAndMaTaiKhoanNot(request.getTenDangNhap(), id)) {
             throw new AppException(ErrorCode.TENDANGNHAP_EXISTED);
         }
-        
-        
-        //map user to enity account
+
+        // map user to enity account
         userMapper.updateEntityFromRequest(request, account);
-        
+
         // update and save enity
-        userRepository.save(account);
-        
+        Account saveAccount = userRepository.save(account);
+
         // map enity to response
-        UserResponse user =userMapper.toUserUpdateResponse(account);
-        
+        UserResponse user = userMapper.toUserUpdateResponse(saveAccount);
+
         return user;
-        
-        
+
     }
 }
