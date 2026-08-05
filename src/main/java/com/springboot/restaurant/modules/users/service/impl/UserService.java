@@ -3,6 +3,7 @@ package com.springboot.restaurant.modules.users.service.impl;
 import com.springboot.restaurant.exception.AppException;
 import com.springboot.restaurant.exception.ErrorCode;
 
+import com.springboot.restaurant.modules.menu.repository.FoodCategoryRepository;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -28,7 +29,8 @@ public class UserService implements UserServiceInterface {
     private final RoleRepository roleRepository;
     private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository, UserMapper userMapper,
+            FoodCategoryRepository foodCategoryRepository) {
 
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
@@ -61,12 +63,13 @@ public class UserService implements UserServiceInterface {
 
         // create account to save to database
         Account account = userMapper.toEntity(request);
+        if (request.getMaVaiTro() != null) {
 
-        Role role = roleRepository.findById(request.getMaVaiTro())
-                .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
+            Role role = roleRepository.findById(request.getMaVaiTro())
+                    .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
 
-        account.setVaiTro(role);
-
+            account.setVaiTro(role);
+        }
         Account saveAccount = userRepository.save(account);
 
         // create dto to save create request
@@ -114,6 +117,18 @@ public class UserService implements UserServiceInterface {
 
         // map user to enity account
         userMapper.updateEntityFromRequest(request, account);
+
+        // // method 1: setMaVaiTro direct -> wrong, cause it set role object
+        // account.getVaiTro().setMaVaiTro(request.getMaVaiTro());
+
+        // method 2: check null and add role object
+        if (request.getMaVaiTro() != null) {
+
+            Role role = roleRepository.findById(request.getMaVaiTro())
+                    .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
+
+            account.setVaiTro(role);
+        }
 
         // update and save enity
         Account saveAccount = userRepository.save(account);
