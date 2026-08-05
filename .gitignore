@@ -35,3 +35,7 @@ build/
 ### database ###
 src/main/resources/application.properties
 src/main/java/com/springboot/restaurant/services/DBContext.java
+
+
+### Docs ###
+analysis_results.md
