@@ -67,7 +67,7 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponse<UserResponse> putUser(@PathVariable("userId") Long id,
             @RequestBody @Valid UserUpdateRequest request) {
         UserResponse user = userService.updateUser(id, request);
@@ -77,7 +77,7 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public ApiResponse<UserResponse> patchUser(@PathVariable("userId") Long id,
             @RequestBody UserUpdateRequest request) {
         UserResponse user = userService.updateUser(id, request);
