@@ -41,8 +41,10 @@ public class Food {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ma_danh_muc")
-    private Category danhMuc;
+    private FoodCategory danhMuc;
     
+    
+    // only maintain a list of week entities
     @OneToMany(mappedBy = "monAn",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<CartDetail> danhSachChiTietGioHang;
     
@@ -52,7 +54,7 @@ public class Food {
     public Food() {
     }
 
-    public Food(Long maMonAn, String tenMonAn, Double giaTien, String moTa, String hinhAnh, Category danhMuc) {
+    public Food(Long maMonAn, String tenMonAn, Double giaTien, String moTa, String hinhAnh, FoodCategory danhMuc) {
         this.maMonAn = maMonAn;
         this.tenMonAn = tenMonAn;
         this.giaTien = giaTien;
