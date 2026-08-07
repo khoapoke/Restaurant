@@ -23,6 +23,6 @@ public class UserUpdateRequest {
     @Email(message = "email not formatted")
     private String email;
 
-    
+    private Long maVaiTro;
     
 }
