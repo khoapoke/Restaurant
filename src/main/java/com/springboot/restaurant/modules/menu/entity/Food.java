@@ -16,13 +16,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "MON_AN")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Food {
 
     @Id
@@ -42,24 +46,12 @@ public class Food {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ma_danh_muc")
     private FoodCategory danhMuc;
-    
-    
+
     // only maintain a list of week entities
-    @OneToMany(mappedBy = "monAn",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "monAn", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartDetail> danhSachChiTietGioHang;
-    
-    @OneToMany(mappedBy = "monAn",cascade = CascadeType.ALL,orphanRemoval = true)
+
+    @OneToMany(mappedBy = "monAn", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetail> danhSachChiTietDonHang;
 
-    public Food() {
-    }
-
-    public Food(Long maMonAn, String tenMonAn, Double giaTien, String moTa, String hinhAnh, FoodCategory danhMuc) {
-        this.maMonAn = maMonAn;
-        this.tenMonAn = tenMonAn;
-        this.giaTien = giaTien;
-        this.moTa = moTa;
-        this.hinhAnh = hinhAnh;
-        this.danhMuc = danhMuc;
-    }
 }
