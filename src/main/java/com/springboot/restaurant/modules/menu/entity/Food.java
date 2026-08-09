@@ -54,4 +54,24 @@ public class Food {
     @OneToMany(mappedBy = "monAn", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetail> danhSachChiTietDonHang;
 
+    public void addCartDetail(CartDetail cartDetail) {
+        danhSachChiTietGioHang.add(cartDetail);
+        cartDetail.setMonAn(this);
+    }
+
+    public void addOrderDetail(OrderDetail orderDetail) {
+        danhSachChiTietDonHang.add(orderDetail);
+        orderDetail.setMonAn(this);
+    }
+
+    public void removeCartDetail(CartDetail cartDetail) {
+        danhSachChiTietGioHang.remove(cartDetail);
+        cartDetail.setMonAn(null);
+    }
+
+    public void removeOrderDetail(OrderDetail orderDetail) {
+        danhSachChiTietDonHang.remove(orderDetail);
+        orderDetail.setMonAn(null);
+    }
+
 }
