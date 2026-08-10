@@ -1,6 +1,7 @@
 package com.springboot.restaurant.modules.cart.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.springboot.restaurant.modules.users.entity.Account;
@@ -15,13 +16,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "GIO_HANG")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cart {
 
     @Id
@@ -38,17 +43,7 @@ public class Cart {
     @JoinColumn(name = "ma_tai_khoan", referencedColumnName = "ma_tai_khoan", unique = true)
     private Account taiKhoan;
 
-    @OneToMany(mappedBy = "gioHang",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<CartDetail> danhSachChiTietGioHang;
-    
-    
-    public Cart() {
-    }
+    @OneToMany(mappedBy = "gioHang", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartDetail> danhSachChiTietGioHang = new ArrayList<>();
 
-    public Cart(Long maGioHang, LocalDateTime ngayTao, Boolean daThanhToan, Account taiKhoan) {
-        this.maGioHang = maGioHang;
-        this.ngayTao = ngayTao;
-        this.daThanhToan = daThanhToan;
-        this.taiKhoan = taiKhoan;
-    }
 }

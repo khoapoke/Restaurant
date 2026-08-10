@@ -4,12 +4,16 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Embeddable
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CartDetailId implements Serializable {
 
     @Column(name = "ma_gio_hang")
@@ -17,14 +21,6 @@ public class CartDetailId implements Serializable {
 
     @Column(name = "ma_mon_an")
     private Long maMonAn;
-
-    public CartDetailId() {
-    }
-
-    public CartDetailId(Long maGioHang, Long maMonAn) {
-        this.maGioHang = maGioHang;
-        this.maMonAn = maMonAn;
-    }
 
     @Override
     public int hashCode() {
@@ -56,5 +52,5 @@ public class CartDetailId implements Serializable {
             return false;
         return true;
     }
-    
+
 }

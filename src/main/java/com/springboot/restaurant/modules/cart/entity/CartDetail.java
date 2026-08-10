@@ -12,7 +12,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -20,6 +22,8 @@ import lombok.Setter;
 @Table(name = "CHI_TIET_GIO_HANG")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CartDetail {
 
     @EmbeddedId
@@ -41,14 +45,5 @@ public class CartDetail {
     @Column(name = "don_gia", nullable = false)
     private Double donGia;
 
-    public CartDetail() {
-    }
-
-    public CartDetail(CartDetailId cartDetailId, Cart gioHang, Food monAn, Integer soLuong, Double donGia) {
-        this.cartDetailId = cartDetailId;
-        this.gioHang = gioHang;
-        this.monAn = monAn;
-        this.soLuong = soLuong;
-        this.donGia = donGia;
-    }
+ 
 }
