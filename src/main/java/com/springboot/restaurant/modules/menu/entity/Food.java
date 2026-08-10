@@ -1,5 +1,6 @@
 package com.springboot.restaurant.modules.menu.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.springboot.restaurant.modules.cart.entity.CartDetail;
@@ -49,10 +50,10 @@ public class Food {
 
     // only maintain a list of week entities
     @OneToMany(mappedBy = "monAn", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartDetail> danhSachChiTietGioHang;
+    private List<CartDetail> danhSachChiTietGioHang = new ArrayList<>();
 
     @OneToMany(mappedBy = "monAn", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderDetail> danhSachChiTietDonHang;
+    private List<OrderDetail> danhSachChiTietDonHang = new ArrayList<>();
 
     public void addCartDetail(CartDetail cartDetail) {
         danhSachChiTietGioHang.add(cartDetail);
