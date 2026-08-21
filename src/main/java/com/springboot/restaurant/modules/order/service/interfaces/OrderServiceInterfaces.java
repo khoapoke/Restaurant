@@ -9,6 +9,7 @@ import com.springboot.restaurant.modules.order.dto.request.OrderUpdateRequest;
 import com.springboot.restaurant.modules.order.dto.response.OrderDetailResponse;
 import com.springboot.restaurant.modules.order.dto.response.OrderItemResponse;
 import com.springboot.restaurant.modules.order.dto.response.OrderResponse;
+import com.springboot.restaurant.modules.order.entity.Order;
 import com.springboot.restaurant.modules.order.entity.OrderDetail;
 
 public interface OrderServiceInterfaces {
@@ -30,4 +31,6 @@ public interface OrderServiceInterfaces {
     OrderItemResponse removeOrderItem(Long maDonHang, Long maMonAn);
 
     OrderDetail findOrderItemByOrderIdAndFoodId(Long maDonHang, Long maMonAn);
+
+    Order findOrderById(Long maDonHang);
 }

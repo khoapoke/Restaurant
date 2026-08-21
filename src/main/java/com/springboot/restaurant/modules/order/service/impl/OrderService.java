@@ -50,7 +50,8 @@ public class OrderService implements OrderServiceInterfaces {
     @Override
     @Transactional
     public OrderResponse createOrder(OrderCreateRequest request) {
-        if (request == null) return null;
+        if (request == null)
+            return null;
 
         Account account = userRepository.findById(request.getMaTaiKhoan())
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
@@ -88,7 +89,8 @@ public class OrderService implements OrderServiceInterfaces {
                 .orElseThrow(() -> new AppException(ErrorCode.ORDER_NOT_FOUND));
 
         Food food = foodRepository.findById(request.getMaMonAn())
-                .orElseThrow(() -> new AppException(ErrorCode.FOOD_NOT_FOUND)); // Assuming FOOD_NOT_FOUND exists or a generic one
+                .orElseThrow(() -> new AppException(ErrorCode.FOOD_NOT_FOUND)); // Assuming FOOD_NOT_FOUND exists or a
+                                                                                // generic one
 
         OrderDetailId orderDetailId = new OrderDetailId(maDonHang, request.getMaMonAn());
         Optional<OrderDetail> existingDetail = orderDetailRepository.findById(orderDetailId);
@@ -120,7 +122,7 @@ public class OrderService implements OrderServiceInterfaces {
     public void updateQuantityOrderItem(OrderItemUpdateRequest request, Long maDonHang, Long maMonAn) {
         OrderDetail orderDetail = findOrderItemByOrderIdAndFoodId(maDonHang, maMonAn);
         orderDetail.setSoLuong(request.getSoLuong());
-        
+
         Order order = orderDetail.getDonHang();
         order.setTongTien(order.calculateTotalOrderItems());
     }
@@ -131,10 +133,16 @@ public class OrderService implements OrderServiceInterfaces {
         OrderDetail orderDetail = findOrderItemByOrderIdAndFoodId(maDonHang, maMonAn);
         Order order = orderRepository.findById(maDonHang)
                 .orElseThrow(() -> new AppException(ErrorCode.ORDER_NOT_FOUND));
-                
+
         order.removeOrderDetail(orderDetail);
         order.setTongTien(order.calculateTotalOrderItems());
 
         return orderMapper.toOrderItemResponse(orderDetail);
     }
+
+    @Override
+    public Order findOrderById(Long maDonHang) {
+        return orderRepository.findById(maDonHang).orElseThrow(()-> new AppException(ErrorCode.ORDER_NOT_FOUND));
+    }
+
 }
