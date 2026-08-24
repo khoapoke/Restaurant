@@ -36,6 +36,7 @@ public class Cart {
     @Column(name = "ngay_tao")
     private LocalDateTime ngayTao;
 
+    // Redundant attribute in the db, need refactor db
     @Column(name = "da_thanh_toan")
     private Boolean daThanhToan;
 
@@ -46,4 +47,15 @@ public class Cart {
     @OneToMany(mappedBy = "gioHang", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartDetail> danhSachChiTietGioHang = new ArrayList<>();
 
+    public void addCartitem(CartDetail cartDetail) {
+
+        danhSachChiTietGioHang.add(cartDetail);
+        cartDetail.setGioHang(this);
+
+    }
+
+    public void removeCartItem(CartDetail cartDetail) {
+        danhSachChiTietGioHang.remove(cartDetail);
+        cartDetail.setGioHang(null);
+    }
 }
