@@ -1,5 +1,10 @@
 package com.springboot.restaurant.exception;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum ErrorCode {
 
     // ACCOUNT
@@ -20,24 +25,18 @@ public enum ErrorCode {
     ORDER_NOT_FOUND(404, "order hasn't created yet"),
     ORDER_HAS_PAID(409, "order has been paid"),
     // PAYMENT
-    PAYMENT_NOT_CREATED(404, "this payment has not been create ")
+    PAYMENT_NOT_CREATED(404, "this payment has not been create "),
+
+    // CART & CARTDETAIL
+    CART_NOT_FOUND(404, "cart not found"),
+
+    // TABLE RESERVATION
+    TABLE_NOT_FOUND(404, "table not found")
 
     ;
 
     private final int code;
     private final String message;
-
-    ErrorCode(int code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
+    
 
 }
