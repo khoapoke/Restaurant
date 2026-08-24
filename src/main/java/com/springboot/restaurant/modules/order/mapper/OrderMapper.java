@@ -12,6 +12,8 @@ import com.springboot.restaurant.modules.order.dto.response.OrderResponse;
 import com.springboot.restaurant.modules.order.entity.Order;
 import com.springboot.restaurant.modules.order.entity.OrderDetail;
 
+import com.springboot.restaurant.modules.order.entity.OrderDetailId;
+
 @Component
 public class OrderMapper {
 
@@ -35,8 +37,10 @@ public class OrderMapper {
             return null;
 
         OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setOrderDetailId(new com.springboot.restaurant.modules.order.entity.OrderDetailId());
-        orderDetail.getOrderDetailId().setMaMonAn(request.getMaMonAn());
+        OrderDetailId orderDetailId = new OrderDetailId();
+        
+        orderDetailId.setMaMonAn(request.getMaMonAn());
+        orderDetail.setOrderDetailId(orderDetailId);
         orderDetail.setSoLuong(request.getSoLuong());
 
         return orderDetail;
