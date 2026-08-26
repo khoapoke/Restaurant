@@ -6,13 +6,17 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Embeddable
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderDetailId implements Serializable {
 
     @Column(name = "ma_don_hang")
@@ -21,14 +25,7 @@ public class OrderDetailId implements Serializable {
     @Column(name = "ma_mon_an")
     private Long maMonAn;
 
-    public OrderDetailId() {
-    }
-
-    public OrderDetailId(Long maDonHang, Long maMonAn) {
-        this.maDonHang = maDonHang;
-        this.maMonAn = maMonAn;
-    }
-
+  
     @Override
     public int hashCode() {
         final int prime = 31;
