@@ -1,9 +1,11 @@
 package com.springboot.restaurant.modules.payment.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.springboot.restaurant.modules.payment.entity.Payment;
 
+@Repository 
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
-    boolean existByMaDonHang(Long maDonHang);
+    //boolean existsByMaDonHang(Long maDonHang);
 }

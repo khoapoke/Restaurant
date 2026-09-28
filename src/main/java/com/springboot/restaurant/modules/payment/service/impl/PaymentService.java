@@ -26,6 +26,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class PaymentService implements PaymentServiceInterfaces {
 
+    
     private final PaymentRepository paymentRepository;
     private final PaymentMapper paymentMapper;
     private final OrderService orderService;
@@ -75,7 +76,7 @@ public class PaymentService implements PaymentServiceInterfaces {
     @Transactional
     public PaymentResponse createPayemnt(PaymentCreateRequest request) {
 
-        if (paymentRepository.existByMaDonHang(request.getMaDonHang())) {
+        if (orderService.existsByMaDonHang(request.getMaDonHang())) {
             throw new AppException(ErrorCode.ORDER_HAS_PAID);
         }
 
