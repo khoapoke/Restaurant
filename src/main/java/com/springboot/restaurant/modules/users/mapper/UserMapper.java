@@ -16,16 +16,16 @@ public class UserMapper {
 
         if (account == null)
             return null;
-        UserResponse dto = new UserResponse();
+        UserResponse response = new UserResponse();
 
         // note: if don't set variable there is will be null
-        dto.setMaTaiKhoan(account.getMaTaiKhoan());
-        dto.setTenDangNhap(account.getTenDangNhap());
-        dto.setHoTen(account.getHoTen());
-        dto.setEmail(account.getEmail());
-        dto.setNgaySinh(account.getNgaySinh());
+        response.setMaTaiKhoan(account.getMaTaiKhoan());
+        response.setTenDangNhap(account.getTenDangNhap());
+        response.setEmail(account.getEmail());
+        response.setHoTen(account.getNguoiDung().getHoTen());
+        response.setNgaySinh(account.getNguoiDung().getNgaySinh());
 
-        return dto;
+        return response;
 
     }
 
@@ -34,12 +34,13 @@ public class UserMapper {
             return null;
 
         UserDetailResponse response = new UserDetailResponse();
+
         response.setMaTaiKhoan(account.getMaTaiKhoan());
         response.setTenDangNhap(account.getTenDangNhap());
         response.setEmail(account.getEmail());
-        response.setDiaChi(account.getDiaChi());
-        response.setHoTen(account.getHoTen());
-        response.setNgaySinh(account.getNgaySinh());
+        response.setDiaChi(account.getNguoiDung().getDiaChi());
+        response.setHoTen(account.getNguoiDung().getHoTen());
+        response.setNgaySinh(account.getNguoiDung().getNgaySinh());
         if (account.getVaiTro() != null) {
             response.setTenVaiTro(account.getVaiTro().getTenVaiTro());
         }
@@ -60,8 +61,8 @@ public class UserMapper {
     public void updateEntityFromRequest(UserUpdateRequest request, Account existingAccount) {
 
         existingAccount.setTenDangNhap(request.getTenDangNhap());
-        existingAccount.setHoTen(request.getHoTen());
-        existingAccount.setDiaChi(request.getDiaChi());
+        existingAccount.getNguoiDung().setHoTen(request.getHoTen());
+        existingAccount.getNguoiDung().setDiaChi(request.getDiaChi());
         existingAccount.setEmail(request.getEmail());
 
     }
@@ -74,8 +75,7 @@ public class UserMapper {
         dto.setMaTaiKhoan(account.getMaTaiKhoan());
         dto.setTenDangNhap(account.getTenDangNhap());
         dto.setEmail(account.getEmail());
-        
-        
+
         return dto;
 
     }
@@ -83,7 +83,7 @@ public class UserMapper {
     public UserResponse toUserUpdateResponse(Account account) {
         UserResponse dto = new UserResponse();
         dto.setTenDangNhap(account.getTenDangNhap());
-        dto.setHoTen(account.getHoTen());
+        dto.setHoTen(account.getNguoiDung().getHoTen());
         dto.setEmail(account.getEmail());
 
         return dto;
