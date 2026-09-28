@@ -19,11 +19,11 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "CHI_TIET_GIO_HANG")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "MON_AN_GIO_HANG")
 public class CartDetail {
 
     @EmbeddedId
@@ -42,8 +42,8 @@ public class CartDetail {
     @Column(name = "so_luong", nullable = false)
     private Integer soLuong;
 
-    @Column(name = "don_gia", nullable = false)
-    private Double donGia;
+    // @Column(name = "don_gia", nullable = false)
+    // private Double donGia;
 
  
 }

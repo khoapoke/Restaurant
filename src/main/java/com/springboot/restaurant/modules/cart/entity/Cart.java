@@ -22,11 +22,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "GIO_HANG")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "GIO_HANG")
 public class Cart {
 
     @Id
@@ -37,8 +37,8 @@ public class Cart {
     private LocalDateTime ngayTao;
 
     // Redundant attribute in the db, need refactor db
-    @Column(name = "da_thanh_toan")
-    private Boolean daThanhToan;
+    // @Column(name = "da_thanh_toan")
+    // private Boolean daThanhToan;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ma_tai_khoan", referencedColumnName = "ma_tai_khoan", unique = true)
