@@ -6,4 +6,5 @@ import com.springboot.restaurant.modules.order.entity.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
     
+    boolean existsByMaDonHang(Long maDonHang);
 }

@@ -23,11 +23,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "DON_HANG")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "DON_HANG")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

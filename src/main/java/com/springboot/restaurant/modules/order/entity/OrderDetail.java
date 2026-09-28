@@ -42,6 +42,7 @@ public class OrderDetail {
     @Column(name = "don_gia", nullable = false)
     private Double donGia;
 
+    // hàm cập nhật đơn giá từ món ăn, không lấy trực tiếp từ món ăn vì giá cũ đã đặt đươn thì không thể tự động cập nhật
     public void updateDonGiaFromMonAn() {
 
         if (this.monAn != null) {

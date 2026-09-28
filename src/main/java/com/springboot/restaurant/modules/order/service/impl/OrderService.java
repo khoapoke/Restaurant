@@ -40,6 +40,14 @@ public class OrderService implements OrderServiceInterfaces {
     private final OrderMapper orderMapper;
 
     @Override
+    public boolean existsByMaDonHang(Long maDonHang) {
+        if (orderRepository.existsByMaDonHang(maDonHang))
+            return true;
+        else
+            return false;
+    }
+
+    @Override
     public List<OrderResponse> getOrders() {
         return orderRepository.findAll()
                 .stream()
@@ -142,7 +150,7 @@ public class OrderService implements OrderServiceInterfaces {
 
     @Override
     public Order findOrderById(Long maDonHang) {
-        return orderRepository.findById(maDonHang).orElseThrow(()-> new AppException(ErrorCode.ORDER_NOT_FOUND));
+        return orderRepository.findById(maDonHang).orElseThrow(() -> new AppException(ErrorCode.ORDER_NOT_FOUND));
     }
 
 }

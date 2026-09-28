@@ -77,7 +77,7 @@ public class OrderMapper {
         response.setTongTien(order.getTongTien());
 
         if (order.getTaiKhoan() != null) {
-            response.setTenKhachHang(order.getTaiKhoan().getHoTen());
+            response.setTenKhachHang(order.getTaiKhoan().getNguoiDung().getHoTen());
         }
 
         if (order.getDanhSachChiTietDonHang() != null) {

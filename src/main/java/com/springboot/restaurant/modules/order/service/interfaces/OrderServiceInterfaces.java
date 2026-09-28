@@ -14,6 +14,9 @@ import com.springboot.restaurant.modules.order.entity.OrderDetail;
 
 public interface OrderServiceInterfaces {
 
+    // utils
+    boolean existsByMaDonHang(Long maDonHang);
+
     // Order
     List<OrderResponse> getOrders();
 
