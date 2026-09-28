@@ -13,12 +13,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "BAN_AN")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Table(name = "BAN_AN")
 public class TableRestaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

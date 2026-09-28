@@ -1,11 +1,14 @@
 package com.springboot.restaurant.modules.tablerestaurant.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.springboot.restaurant.modules.tablerestaurant.dto.request.TableRestaurantCreateRequest;
 import com.springboot.restaurant.modules.tablerestaurant.dto.response.TableRestaurantDetailResponse;
 import com.springboot.restaurant.modules.tablerestaurant.dto.response.TableRestaurantResponse;
 import com.springboot.restaurant.modules.tablerestaurant.entity.TableReservation;
 import com.springboot.restaurant.modules.tablerestaurant.entity.TableRestaurant;
 
+@Component 
 public class TableRestaurantMapper {
 
     public TableRestaurant toEntityTableRestaurant(TableRestaurantCreateRequest request) {
