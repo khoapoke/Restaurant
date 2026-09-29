@@ -14,6 +14,6 @@ public interface CartServiceInterface {
     
     CartDetailResponse getCart(Long maGioHang);
 
-    CartItemResponse addItem(CartItemCreateRequest request,Long maGioHang);
+    CartItemResponse addCartItem(CartItemCreateRequest request,Long maGioHang);
     
 }

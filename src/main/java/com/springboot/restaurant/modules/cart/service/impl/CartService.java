@@ -49,7 +49,7 @@ public class CartService implements CartServiceInterface {
     }
 
     @Override
-    public CartItemResponse addItem(CartItemCreateRequest request, Long maGioHang) {
+    public CartItemResponse addCartItem(CartItemCreateRequest request, Long maGioHang) {
 
         Cart cart = cartRepository.findById(maGioHang).orElseThrow(() -> new AppException(ErrorCode.CART_NOT_FOUND));
 

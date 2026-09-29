@@ -54,7 +54,7 @@ public class CartController {
     public ApiResponse<CartItemResponse> addItemInCart(@PathVariable("cartId") Long maGioHang,
             @RequestBody CartItemCreateRequest request) {
                 
-        CartItemResponse response = cartService.addItem(request, maGioHang);
+        CartItemResponse response = cartService.addCartItem(request, maGioHang);
         return ApiResponse.success(204, "add item success", response);
 
     }
