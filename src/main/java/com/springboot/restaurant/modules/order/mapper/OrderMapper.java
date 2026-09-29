@@ -17,7 +17,7 @@ import com.springboot.restaurant.modules.order.entity.OrderDetailId;
 @Component
 public class OrderMapper {
 
-    public Order toOrderEntity(OrderCreateRequest request) {
+    public Order toEntityOrder(OrderCreateRequest request) {
 
         if (request == null)
             return null;
@@ -32,7 +32,7 @@ public class OrderMapper {
 
     }
 
-    public OrderDetail toOrderDetailEntity(OrderItemAddRequest request) {
+    public OrderDetail toEntityOrderDetail(OrderItemAddRequest request) {
         if (request == null)
             return null;
 

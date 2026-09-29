@@ -64,7 +64,7 @@ public class OrderService implements OrderServiceInterfaces {
         Account account = userRepository.findById(request.getMaTaiKhoan())
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-        Order order = orderMapper.toOrderEntity(request);
+        Order order = orderMapper.toEntityOrder(request);
         order.setTaiKhoan(account);
         order.setTongTien(0.0);
 
@@ -108,7 +108,7 @@ public class OrderService implements OrderServiceInterfaces {
             orderDetail = existingDetail.get();
             orderDetail.setSoLuong(orderDetail.getSoLuong() + request.getSoLuong());
         } else {
-            orderDetail = orderMapper.toOrderDetailEntity(request);
+            orderDetail = orderMapper.toEntityOrderDetail(request);
             orderDetail.setMonAn(food);
             orderDetail.setDonGia(food.getGiaTien());
             order.addOrderDetail(orderDetail);
