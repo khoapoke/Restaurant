@@ -1,4 +1,4 @@
-package com.springboot.restaurant.modules.users.dto.request;
+package com.springboot.restaurant.modules.user.dto.request;
 
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleUpdateRequest {
+public class RoleCreateRequest {
     
-  @Size(min = 3, message="name role must be at least 3 characters")
+    @Size(min = 3, message="name role must be at least 3 characters")
     private String tenVaiTro;
+    
     
 }

@@ -3,7 +3,7 @@ package com.springboot.restaurant.modules.order.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.springboot.restaurant.modules.users.entity.Account;
+import com.springboot.restaurant.modules.user.entity.Account;
 
 import java.time.LocalDateTime;
 

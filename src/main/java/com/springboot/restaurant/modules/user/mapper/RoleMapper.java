@@ -1,12 +1,12 @@
-package com.springboot.restaurant.modules.users.mapper;
+package com.springboot.restaurant.modules.user.mapper;
 
 
 import org.springframework.stereotype.Component;
 
-import com.springboot.restaurant.modules.users.dto.request.RoleCreateRequest;
-import com.springboot.restaurant.modules.users.dto.request.RoleUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.RoleResponse;
-import com.springboot.restaurant.modules.users.entity.Role;
+import com.springboot.restaurant.modules.user.dto.request.RoleCreateRequest;
+import com.springboot.restaurant.modules.user.dto.request.RoleUpdateRequest;
+import com.springboot.restaurant.modules.user.dto.response.RoleResponse;
+import com.springboot.restaurant.modules.user.entity.Role;
 
 @Component
 

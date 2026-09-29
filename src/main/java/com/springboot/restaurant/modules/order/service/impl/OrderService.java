@@ -22,8 +22,8 @@ import com.springboot.restaurant.modules.order.mapper.OrderMapper;
 import com.springboot.restaurant.modules.order.repository.OrderDetailRepository;
 import com.springboot.restaurant.modules.order.repository.OrderRepository;
 import com.springboot.restaurant.modules.order.service.interfaces.OrderServiceInterfaces;
-import com.springboot.restaurant.modules.users.entity.Account;
-import com.springboot.restaurant.modules.users.repository.UserRepository;
+import com.springboot.restaurant.modules.user.entity.Account;
+import com.springboot.restaurant.modules.user.repository.UserRepository;
 import com.springboot.restaurant.modules.menu.entity.Food;
 import com.springboot.restaurant.modules.menu.repository.FoodRepository;
 

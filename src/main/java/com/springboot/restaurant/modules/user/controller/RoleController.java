@@ -1,4 +1,4 @@
-package com.springboot.restaurant.modules.users.controller;
+package com.springboot.restaurant.modules.user.controller;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springboot.restaurant.modules.users.dto.request.RoleCreateRequest;
-import com.springboot.restaurant.modules.users.dto.request.RoleUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.RoleResponse;
-import com.springboot.restaurant.modules.users.service.interfaces.RoleServiceInterface;
+import com.springboot.restaurant.modules.user.dto.request.RoleCreateRequest;
+import com.springboot.restaurant.modules.user.dto.request.RoleUpdateRequest;
+import com.springboot.restaurant.modules.user.dto.response.RoleResponse;
+import com.springboot.restaurant.modules.user.service.interfaces.RoleServiceInterface;
 import com.springboot.restaurant.shared.ApiResponse;
 
 import jakarta.validation.Valid;

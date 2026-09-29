@@ -1,12 +1,12 @@
-package com.springboot.restaurant.modules.users.mapper;
+package com.springboot.restaurant.modules.user.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
-import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.UserDetailResponse;
-import com.springboot.restaurant.modules.users.dto.response.UserResponse;
-import com.springboot.restaurant.modules.users.entity.Account;
+import com.springboot.restaurant.modules.user.dto.request.UserCreateRequest;
+import com.springboot.restaurant.modules.user.dto.request.UserUpdateRequest;
+import com.springboot.restaurant.modules.user.dto.response.UserDetailResponse;
+import com.springboot.restaurant.modules.user.dto.response.UserResponse;
+import com.springboot.restaurant.modules.user.entity.Account;
 
 @Component
 

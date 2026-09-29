@@ -1,19 +1,19 @@
-package com.springboot.restaurant.modules.users.service.impl;
+package com.springboot.restaurant.modules.user.service.impl;
 
 import com.springboot.restaurant.exception.AppException;
 import com.springboot.restaurant.exception.ErrorCode;
 
 import com.springboot.restaurant.modules.menu.repository.FoodCategoryRepository;
-import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
-import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.UserDetailResponse;
-import com.springboot.restaurant.modules.users.dto.response.UserResponse;
-import com.springboot.restaurant.modules.users.entity.Account;
-import com.springboot.restaurant.modules.users.entity.Role;
-import com.springboot.restaurant.modules.users.mapper.UserMapper;
-import com.springboot.restaurant.modules.users.repository.RoleRepository;
-import com.springboot.restaurant.modules.users.repository.UserRepository;
-import com.springboot.restaurant.modules.users.service.interfaces.UserServiceInterface;
+import com.springboot.restaurant.modules.user.dto.request.UserCreateRequest;
+import com.springboot.restaurant.modules.user.dto.request.UserUpdateRequest;
+import com.springboot.restaurant.modules.user.dto.response.UserDetailResponse;
+import com.springboot.restaurant.modules.user.dto.response.UserResponse;
+import com.springboot.restaurant.modules.user.entity.Account;
+import com.springboot.restaurant.modules.user.entity.Role;
+import com.springboot.restaurant.modules.user.mapper.UserMapper;
+import com.springboot.restaurant.modules.user.repository.RoleRepository;
+import com.springboot.restaurant.modules.user.repository.UserRepository;
+import com.springboot.restaurant.modules.user.service.interfaces.UserServiceInterface;
 
 import java.util.List;
 

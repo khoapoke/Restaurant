@@ -1,5 +1,5 @@
 
-package com.springboot.restaurant.modules.users.entity;
+package com.springboot.restaurant.modules.user.entity;
 
 
 

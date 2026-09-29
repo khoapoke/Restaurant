@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.springboot.restaurant.modules.users.entity.Account;
+import com.springboot.restaurant.modules.user.entity.Account;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

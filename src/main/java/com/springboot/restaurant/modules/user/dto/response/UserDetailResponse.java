@@ -1,4 +1,4 @@
-package com.springboot.restaurant.modules.users.dto.response;
+package com.springboot.restaurant.modules.user.dto.response;
 
 import java.time.LocalDate;
 

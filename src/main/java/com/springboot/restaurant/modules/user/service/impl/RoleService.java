@@ -1,4 +1,4 @@
-package com.springboot.restaurant.modules.users.service.impl;
+package com.springboot.restaurant.modules.user.service.impl;
 
 import java.util.List;
 
@@ -8,13 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.restaurant.exception.AppException;
 import com.springboot.restaurant.exception.ErrorCode;
-import com.springboot.restaurant.modules.users.dto.request.RoleCreateRequest;
-import com.springboot.restaurant.modules.users.dto.request.RoleUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.RoleResponse;
-import com.springboot.restaurant.modules.users.entity.Role;
-import com.springboot.restaurant.modules.users.mapper.RoleMapper;
-import com.springboot.restaurant.modules.users.repository.RoleRepository;
-import com.springboot.restaurant.modules.users.service.interfaces.RoleServiceInterface;
+import com.springboot.restaurant.modules.user.dto.request.RoleCreateRequest;
+import com.springboot.restaurant.modules.user.dto.request.RoleUpdateRequest;
+import com.springboot.restaurant.modules.user.dto.response.RoleResponse;
+import com.springboot.restaurant.modules.user.entity.Role;
+import com.springboot.restaurant.modules.user.mapper.RoleMapper;
+import com.springboot.restaurant.modules.user.repository.RoleRepository;
+import com.springboot.restaurant.modules.user.service.interfaces.RoleServiceInterface;
 
 
 

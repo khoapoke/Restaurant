@@ -1,9 +1,9 @@
-package com.springboot.restaurant.modules.users.repository;
+package com.springboot.restaurant.modules.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.springboot.restaurant.modules.users.entity.Role;
+import com.springboot.restaurant.modules.user.entity.Role;
 
 
 

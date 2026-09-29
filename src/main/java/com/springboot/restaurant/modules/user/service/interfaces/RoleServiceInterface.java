@@ -1,10 +1,10 @@
-package com.springboot.restaurant.modules.users.service.interfaces;
+package com.springboot.restaurant.modules.user.service.interfaces;
 
 import java.util.List;
 
-import com.springboot.restaurant.modules.users.dto.request.RoleCreateRequest;
-import com.springboot.restaurant.modules.users.dto.request.RoleUpdateRequest;
-import com.springboot.restaurant.modules.users.dto.response.RoleResponse;
+import com.springboot.restaurant.modules.user.dto.request.RoleCreateRequest;
+import com.springboot.restaurant.modules.user.dto.request.RoleUpdateRequest;
+import com.springboot.restaurant.modules.user.dto.response.RoleResponse;
 
 
 

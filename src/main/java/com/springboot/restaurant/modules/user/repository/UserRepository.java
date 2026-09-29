@@ -1,10 +1,10 @@
-package com.springboot.restaurant.modules.users.repository;
+package com.springboot.restaurant.modules.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.stereotype.Repository;
 
-import com.springboot.restaurant.modules.users.entity.Account;
+import com.springboot.restaurant.modules.user.entity.Account;
 
 // mặc dù các phiên bản gần đây có thể hiểu, nhưng thêm vào để ghi nhớ
 @Repository
