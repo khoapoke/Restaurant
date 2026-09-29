@@ -2,7 +2,6 @@ package com.springboot.restaurant.modules.tablerestaurant.controller;
 
 import java.util.List;
 
-import org.aspectj.internal.lang.annotation.ajcPrivileged;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

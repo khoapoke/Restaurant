@@ -2,7 +2,7 @@ package com.springboot.restaurant.modules.users.service.interfaces;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
