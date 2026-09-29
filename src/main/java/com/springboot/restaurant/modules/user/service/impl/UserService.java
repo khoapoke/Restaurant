@@ -3,7 +3,7 @@ package com.springboot.restaurant.modules.user.service.impl;
 import com.springboot.restaurant.exception.AppException;
 import com.springboot.restaurant.exception.ErrorCode;
 
-import com.springboot.restaurant.modules.menu.repository.FoodCategoryRepository;
+
 import com.springboot.restaurant.modules.user.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.user.dto.request.UserUpdateRequest;
 import com.springboot.restaurant.modules.user.dto.response.UserDetailResponse;
@@ -15,11 +15,15 @@ import com.springboot.restaurant.modules.user.repository.RoleRepository;
 import com.springboot.restaurant.modules.user.repository.UserRepository;
 import com.springboot.restaurant.modules.user.service.interfaces.UserServiceInterface;
 
+import lombok.AllArgsConstructor;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+@AllArgsConstructor 
 @Service
 public class UserService implements UserServiceInterface {
 
@@ -29,14 +33,7 @@ public class UserService implements UserServiceInterface {
     private final RoleRepository roleRepository;
     private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, UserMapper userMapper,
-            FoodCategoryRepository foodCategoryRepository) {
-
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.userMapper = userMapper;
-
-    }
+  
 
     @Override
     public List<UserResponse> getList() {
@@ -62,7 +59,7 @@ public class UserService implements UserServiceInterface {
         }
 
         // create account to save to database
-        Account account = userMapper.toEntity(request);
+        Account account = userMapper.toEntityAccount(request);
         if (request.getMaVaiTro() != null) {
 
             Role role = roleRepository.findById(request.getMaVaiTro())
@@ -73,7 +70,7 @@ public class UserService implements UserServiceInterface {
         Account saveAccount = userRepository.save(account);
 
         // create dto to save create request
-        UserResponse user = userMapper.toUserCreationResponse(saveAccount);
+        UserResponse user = userMapper.toUserResponse(saveAccount);
 
         return user;
 
@@ -95,7 +92,7 @@ public class UserService implements UserServiceInterface {
 
         Account account = userRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
         userRepository.delete(account);
-        UserResponse user = userMapper.toUserDeleteResponse(account);
+        UserResponse user = userMapper.toUserResponse(account);
 
         return user;
 
@@ -134,7 +131,7 @@ public class UserService implements UserServiceInterface {
         Account saveAccount = userRepository.save(account);
 
         // map enity to response
-        UserResponse user = userMapper.toUserUpdateResponse(saveAccount);
+        UserResponse user = userMapper.toUserResponse(saveAccount);
 
         return user;
 

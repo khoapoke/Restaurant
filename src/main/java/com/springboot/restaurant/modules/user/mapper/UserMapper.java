@@ -12,6 +12,18 @@ import com.springboot.restaurant.modules.user.entity.Account;
 
 public class UserMapper {
 
+    public Account toEntityAccount(UserCreateRequest request) {
+        if(request==null)
+            return null;
+        Account account = new Account();
+        account.setTenDangNhap(request.getTenDangNhap());
+        account.setMatKhau(request.getMatKhau());
+        account.setEmail(request.getEmail());
+        return account;
+
+    }
+
+    // bị nhầm giữa account và user sẽ refactor lại sau 
     public UserResponse toUserResponse(Account account) {
 
         if (account == null)
@@ -49,15 +61,6 @@ public class UserMapper {
 
     }
 
-    public Account toEntity(UserCreateRequest request) {
-        Account account = new Account();
-        account.setTenDangNhap(request.getTenDangNhap());
-        account.setMatKhau(request.getMatKhau());
-        account.setEmail(request.getEmail());
-        return account;
-
-    }
-
     public void updateEntityFromRequest(UserUpdateRequest request, Account existingAccount) {
 
         existingAccount.setTenDangNhap(request.getTenDangNhap());
@@ -67,38 +70,6 @@ public class UserMapper {
 
     }
 
-    public UserResponse toUserCreationResponse(Account account) {
-        if (account == null)
-            return null;
-
-        UserResponse dto = new UserResponse();
-        dto.setMaTaiKhoan(account.getMaTaiKhoan());
-        dto.setTenDangNhap(account.getTenDangNhap());
-        dto.setEmail(account.getEmail());
-
-        return dto;
-
-    }
-
-    public UserResponse toUserUpdateResponse(Account account) {
-        UserResponse dto = new UserResponse();
-        dto.setTenDangNhap(account.getTenDangNhap());
-        dto.setHoTen(account.getNguoiDung().getHoTen());
-        dto.setEmail(account.getEmail());
-
-        return dto;
-
-    }
-
-    public UserResponse toUserDeleteResponse(Account account) {
-        if (account == null)
-            return null;
-
-        UserResponse user = new UserResponse();
-        user.setMaTaiKhoan(account.getMaTaiKhoan());
-
-        return user;
-
-    }
+  
 
 }
