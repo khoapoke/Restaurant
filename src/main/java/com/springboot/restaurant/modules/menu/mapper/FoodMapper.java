@@ -11,7 +11,7 @@ import com.springboot.restaurant.modules.menu.entity.Food;
 @Component
 
 public class FoodMapper {
-    public Food toEntity(FoodCreateRequest request) {
+    public Food toEntityFood(FoodCreateRequest request) {
 
         Food food = new Food();
         food.setTenMonAn(request.getTenMonAn());

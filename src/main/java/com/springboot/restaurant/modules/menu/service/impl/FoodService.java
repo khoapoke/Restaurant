@@ -49,7 +49,7 @@ public class FoodService implements FoodServiceInterface {
 
     public FoodResponse createFood(FoodCreateRequest request) {
 
-        Food food = foodMapper.toEntity(request);
+        Food food = foodMapper.toEntityFood(request);
 
         FoodCategory foodCategory = foodCategoryRepository.findById(request.getMaDanhMuc())
                 .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_FOUND));
