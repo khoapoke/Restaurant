@@ -3,6 +3,7 @@ package com.springboot.restaurant.modules.payment.mapper;
 import org.springframework.stereotype.Component;
 
 import com.springboot.restaurant.modules.payment.dto.request.PaymentCreateRequest;
+import com.springboot.restaurant.modules.payment.dto.request.PaymentUpdateRequest;
 import com.springboot.restaurant.modules.payment.dto.response.PaymentDetailResponse;
 import com.springboot.restaurant.modules.payment.dto.response.PaymentResponse;
 import com.springboot.restaurant.modules.payment.entity.Payment;
@@ -49,6 +50,14 @@ public class PaymentMapper {
         response.setSoTien(payment.getSoTien());
 
         return response;
+
+    }
+
+
+    public void updateEntityFromRequest(PaymentUpdateRequest request, Payment existingPayment){
+
+        existingPayment.setPhuongThuc(request.getPhuongThuc());
+        existingPayment.setTrangThai(request.getTrangThai());
 
     }
 

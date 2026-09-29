@@ -11,6 +11,7 @@ import com.springboot.restaurant.modules.order.service.impl.OrderService;
 import com.springboot.restaurant.modules.payment.dto.request.PaymentCreateRequest;
 import com.springboot.restaurant.modules.payment.dto.request.PaymentMethodUpdateRequest;
 import com.springboot.restaurant.modules.payment.dto.request.PaymentStatusUpdateRequest;
+import com.springboot.restaurant.modules.payment.dto.request.PaymentUpdateRequest;
 import com.springboot.restaurant.modules.payment.dto.response.PaymentDetailResponse;
 import com.springboot.restaurant.modules.payment.dto.response.PaymentResponse;
 import com.springboot.restaurant.modules.payment.entity.Payment;
@@ -31,6 +32,13 @@ public class PaymentService implements PaymentServiceInterfaces {
     private final PaymentMapper paymentMapper;
     private final OrderService orderService;
 
+
+    @Override 
+    public Payment findByMaThanhToan(Long maThanhToan){
+        return paymentRepository.findById(maThanhToan)
+                .orElseThrow(() -> new AppException(ErrorCode.PAYMENT_NOT_CREATED));
+    }
+
     @Override
     public List<PaymentResponse> getList() {
 
@@ -46,8 +54,7 @@ public class PaymentService implements PaymentServiceInterfaces {
     @Override
     @Transactional
     public void updatePaymentStatus(PaymentStatusUpdateRequest request, Long id) {
-        Payment payment = paymentRepository.findById(id)
-                .orElseThrow(() -> new AppException(ErrorCode.PAYMENT_NOT_CREATED));
+        Payment payment = findByMaThanhToan(id);
 
         payment.setTrangThai(request.getTrangThai());
     }
@@ -55,8 +62,7 @@ public class PaymentService implements PaymentServiceInterfaces {
     @Override
     @Transactional
     public void updatePaymentMethod(PaymentMethodUpdateRequest request, Long id) {
-        Payment payment = paymentRepository.findById(id)
-                .orElseThrow(() -> new AppException(ErrorCode.PAYMENT_NOT_CREATED));
+        Payment payment = findByMaThanhToan(id);
 
         payment.setPhuongThuc(request.getPhuongThuc());
     }
@@ -64,8 +70,7 @@ public class PaymentService implements PaymentServiceInterfaces {
     @Override
     public PaymentDetailResponse getPayment(Long id) {
 
-        Payment payment = paymentRepository.findById(id)
-                .orElseThrow(() -> new AppException(ErrorCode.PAYMENT_NOT_CREATED));
+        Payment payment =findByMaThanhToan(id);
 
         PaymentDetailResponse response = paymentMapper.toPaymentDetailResponse(payment);
 
@@ -88,6 +93,13 @@ public class PaymentService implements PaymentServiceInterfaces {
 
         PaymentResponse response = paymentMapper.toPaymentResponse(payment);
         return response;
+    }
+
+    @Override
+    @Transactional 
+    public void updatePayment(Long id, PaymentUpdateRequest request){
+            Payment payment=findByMaThanhToan(id);
+            paymentMapper.updateEntityFromRequest(request, payment);
     }
 
 }
