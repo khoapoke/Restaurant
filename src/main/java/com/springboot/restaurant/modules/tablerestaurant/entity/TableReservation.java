@@ -1,10 +1,8 @@
 package com.springboot.restaurant.modules.tablerestaurant.entity;
 
-import com.springboot.restaurant.modules.users.entity.Account;
-
 import java.time.LocalDateTime;
 
-
+import com.springboot.restaurant.modules.users.entity.Account;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

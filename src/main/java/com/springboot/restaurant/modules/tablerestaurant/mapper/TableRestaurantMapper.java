@@ -3,6 +3,7 @@ package com.springboot.restaurant.modules.tablerestaurant.mapper;
 import org.springframework.stereotype.Component;
 
 import com.springboot.restaurant.modules.tablerestaurant.dto.request.TableRestaurantCreateRequest;
+import com.springboot.restaurant.modules.tablerestaurant.dto.request.TableRestaurantUpdateRequest;
 import com.springboot.restaurant.modules.tablerestaurant.dto.response.TableRestaurantDetailResponse;
 import com.springboot.restaurant.modules.tablerestaurant.dto.response.TableRestaurantResponse;
 import com.springboot.restaurant.modules.tablerestaurant.entity.TableReservation;
@@ -13,7 +14,14 @@ public class TableRestaurantMapper {
 
     public TableRestaurant toEntityTableRestaurant(TableRestaurantCreateRequest request) {
 
-        return null;
+       TableRestaurant tableRestaurant =new TableRestaurant();
+
+       tableRestaurant.setTenBan(request.getTenBan());
+       tableRestaurant.setSucChua(request.getSucChua());
+       tableRestaurant.setTrangThai(request.getTrangThai());
+       tableRestaurant.setViTri(request.getViTri());
+
+       return tableRestaurant;
 
     }
 
@@ -46,6 +54,15 @@ public class TableRestaurantMapper {
         response.setViTri(tableRestaurant.getViTri());
 
         return response;
+
+    }
+
+    public void updateEntityFromRequest(TableRestaurantUpdateRequest request, TableRestaurant tableRestaurant){
+
+        tableRestaurant.setTenBan(request.getTenBan());
+        tableRestaurant.setSucChua(request.getSucChua());
+        tableRestaurant.setTrangThai(request.getTrangThai());
+        tableRestaurant.setViTri(request.getViTri());
 
     }
     
