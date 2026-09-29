@@ -1,9 +1,10 @@
 package com.springboot.restaurant.modules.order.entity;
 
-import com.springboot.restaurant.modules.users.entity.Account;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.springboot.restaurant.modules.users.entity.Account;
+
 import java.time.LocalDateTime;
 
 import jakarta.persistence.CascadeType;
