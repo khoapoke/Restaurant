@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.springboot.restaurant.modules.cart.dto.request.CartCreateRequest;
 import com.springboot.restaurant.modules.cart.dto.request.CartItemCreateRequest;
 import com.springboot.restaurant.modules.cart.dto.response.CartItemResponse;
 import com.springboot.restaurant.modules.cart.dto.response.CartResponse;
@@ -15,10 +16,15 @@ import com.springboot.restaurant.modules.cart.entity.CartDetailId;
 @Component 
 public class CartMapper {
 
-    public Cart toEntityCart(CartItemCreateRequest request) {
 
-        return null;
+    // take note: vấn đề là khi map sang entity mới tạo không được vì trong request có khóa ngoại 
+    public Cart toEntityCart(CartCreateRequest request) {
 
+    //   Cart cart= new Cart();
+    //   cart.getTaiKhoan().setMaTaiKhoan(request.getMaTaiKhoan());
+    //   return cart;
+
+    return null;
     }
 
     public CartDetail toEntityCartDetail(CartItemCreateRequest request) {
