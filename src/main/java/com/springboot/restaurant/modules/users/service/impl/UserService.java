@@ -4,11 +4,6 @@ import com.springboot.restaurant.exception.AppException;
 import com.springboot.restaurant.exception.ErrorCode;
 
 import com.springboot.restaurant.modules.menu.repository.FoodCategoryRepository;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.springboot.restaurant.modules.users.dto.request.UserCreateRequest;
 import com.springboot.restaurant.modules.users.dto.request.UserUpdateRequest;
 import com.springboot.restaurant.modules.users.dto.response.UserDetailResponse;
@@ -19,6 +14,11 @@ import com.springboot.restaurant.modules.users.mapper.UserMapper;
 import com.springboot.restaurant.modules.users.repository.RoleRepository;
 import com.springboot.restaurant.modules.users.repository.UserRepository;
 import com.springboot.restaurant.modules.users.service.interfaces.UserServiceInterface;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserService implements UserServiceInterface {
