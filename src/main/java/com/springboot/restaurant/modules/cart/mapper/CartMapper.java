@@ -13,31 +13,33 @@ import com.springboot.restaurant.modules.cart.entity.Cart;
 import com.springboot.restaurant.modules.cart.entity.CartDetail;
 import com.springboot.restaurant.modules.cart.entity.CartDetailId;
 
-@Component 
+import lombok.AllArgsConstructor;
+@AllArgsConstructor 
+@Component
 public class CartMapper {
 
-
-    // take note: vấn đề là khi map sang entity mới tạo không được vì trong request có khóa ngoại 
+    private  final CartItemMapper cartItemMapper;
+    // take note: vấn đề là khi map sang entity mới tạo không được 
+    // vì trong entity có khóa ngoại là mã tìa khoản 
     public Cart toEntityCart(CartCreateRequest request) {
 
-    //   Cart cart= new Cart();
-    //   cart.getTaiKhoan().setMaTaiKhoan(request.getMaTaiKhoan());
-    //   return cart;
-
-    return null;
+        Cart cart= new Cart();
+        // cart.getTaiKhoan().setMaTaiKhoan(request.getMaTaiKhoan());
+        // return cart;
+    
+        return cart;
     }
 
     public CartDetail toEntityCartDetail(CartItemCreateRequest request) {
-        
+
         CartDetail cartDetail = new CartDetail();
         CartDetailId cartDetailId = new CartDetailId();
         cartDetailId.setMaMonAn(request.getMaMonAn());
         cartDetail.setCartDetailId(cartDetailId);
         cartDetail.setSoLuong(request.getSoLuong());
-        
+
         return cartDetail;
     }
- 
 
     public CartResponse toCartResponse(Cart cart) {
 
@@ -52,17 +54,6 @@ public class CartMapper {
 
     }
 
-    public CartItemResponse toCartItemResponse(CartDetail cartDetail) {
-
-        CartItemResponse response = new CartItemResponse();
-
-        response.setMaMonAn(cartDetail.getMonAn().getMaMonAn());
-        response.setTenMonAn(cartDetail.getMonAn().getTenMonAn());
-        response.setDonGia(cartDetail.getMonAn().getGiaTien());
-        response.setSoLuong(cartDetail.getSoLuong());
-
-        return response;
-    }
 
     public CartDetailResponse toCartDetailResponse(Cart cart) {
 
@@ -76,7 +67,7 @@ public class CartMapper {
 
             List<CartItemResponse> listCartItemResponse = cart.getDanhSachChiTietGioHang()
                     .stream()
-                    .map(x -> toCartItemResponse(x))
+                    .map(x -> cartItemMapper.toCartItemResponse(x))
                     .toList();
             response.setDanhSachMonAn(listCartItemResponse);
         }
