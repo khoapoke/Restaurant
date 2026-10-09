@@ -9,6 +9,7 @@ import com.springboot.restaurant.modules.user.entity.Account;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,13 +35,13 @@ public class Cart {
     @Column(name = "ma_gio_hang")
     private Long maGioHang;
     @Column(name = "ngay_tao")
-    private LocalDateTime ngayTao;
+    private LocalDateTime ngayTao=LocalDateTime.now();
 
     // Redundant attribute in the db, need refactor db
     // @Column(name = "da_thanh_toan")
     // private Boolean daThanhToan;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY) //cascadeType.all là xóa ở bảng kia nuk 
     @JoinColumn(name = "ma_tai_khoan", referencedColumnName = "ma_tai_khoan", unique = true)
     private Account taiKhoan;
 
