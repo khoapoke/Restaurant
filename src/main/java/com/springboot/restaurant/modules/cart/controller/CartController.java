@@ -3,15 +3,20 @@ package com.springboot.restaurant.modules.cart.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+import com.springboot.restaurant.modules.cart.dto.request.CartCreateRequest;
 import com.springboot.restaurant.modules.cart.dto.request.CartItemCreateRequest;
+import com.springboot.restaurant.modules.cart.dto.request.CartItemUpdateRequest;
 import com.springboot.restaurant.modules.cart.dto.response.CartDetailResponse;
 import com.springboot.restaurant.modules.cart.dto.response.CartItemResponse;
 import com.springboot.restaurant.modules.cart.dto.response.CartResponse;
@@ -49,14 +54,55 @@ public class CartController {
 
     }
 
-    @PostMapping("/{cartId}//items")
+    @PostMapping("/{cartId}/items")
     @ResponseStatus(HttpStatus.CREATED)
     public ApiResponse<CartItemResponse> addItemInCart(@PathVariable("cartId") Long maGioHang,
-            @RequestBody CartItemCreateRequest request) {
-                
-        CartItemResponse response = cartService.addCartItem(request, maGioHang);
-        return ApiResponse.success(204, "add item success", response);
+            @Valid @RequestBody CartItemCreateRequest request) {
 
+        CartItemResponse response = cartService.addCartItem(request, maGioHang);
+        return ApiResponse.success(201, "add item success", response);
+
+    }
+
+    @PutMapping("/{cartId}/items/{foodId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResponse<CartItemResponse> updateCartItem(
+            @PathVariable("cartId") Long maGioHang,
+            @PathVariable("foodId") Long maMonAn,
+            @Valid @RequestBody CartItemUpdateRequest request) {
+
+        CartItemResponse response = cartService.updateCartItem(request, maGioHang, maMonAn);
+        return ApiResponse.success(200, "update item success", response);
+    }
+
+    @DeleteMapping("/{cartId}/items/{foodId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResponse<Void> removeCartItem(
+            @PathVariable("cartId") Long maGioHang,
+            @PathVariable("foodId") Long maMonAn) {
+
+        cartService.removeCartItem(maGioHang, maMonAn);
+        return ApiResponse.success(200, "remove item success", null);
+    }
+
+    @PostMapping
+   
+    @ResponseStatus(HttpStatus.CREATED)
+    public ApiResponse<CartResponse> postCart(@Valid @RequestBody CartCreateRequest request) {
+
+        CartResponse response = cartService.createCart(request);
+
+        return ApiResponse.success(201, "create cart success", response); 
+
+    }
+
+    @DeleteMapping("/{cartId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResponse<Void> deleteCart(@PathVariable("cartId") Long maGioHang){
+
+        cartService.removeCart(maGioHang);
+
+        return  ApiResponse.success(200, "delete sucess", null);
     }
 
 }
