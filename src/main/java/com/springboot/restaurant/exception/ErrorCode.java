@@ -29,7 +29,7 @@ public enum ErrorCode {
 
     // CART & CARTDETAIL
     CART_NOT_FOUND(404, "cart not found"),
-
+    ITEM_CART_NOT_EXISTED(404,"item have been delete or not existed"),
     // TABLE RESERVATION
     TABLE_NOT_FOUND(404, "table not found")
 
